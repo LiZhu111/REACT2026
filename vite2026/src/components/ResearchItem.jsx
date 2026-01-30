@@ -1,7 +1,21 @@
+// src/components/ResearchItem.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function ResearchItem({ title, authors, description, image, link, index, isLastVisible, onLoadMore, hasMore }) {
+export default function ResearchItem({ 
+  title, 
+  authors, 
+  description, 
+  image, 
+  link, 
+  index, 
+  isLastVisible, 
+  onLoadMore, 
+  hasMore,
+  sectionTitle, // 动态标题
+  exploreText,  // 动态加载文本
+  linkText      // 动态链接文本
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const bgColor = index % 2 === 0 ? 'bg-[#0a1229]' : 'bg-[#101b39]';
 
@@ -15,7 +29,9 @@ export default function ResearchItem({ title, authors, description, image, link,
       <div className="max-w-[1440px] mx-auto px-6 sm:px-16 lg:px-32 w-full relative z-10 py-24">
         <div className="max-w-5xl">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center gap-4 mb-10 lg:mb-16">
-            <span className="text-cyan-500/60 font-[400] text-[10px] tracking-[0.5em] uppercase">Project // 0{index + 1}</span>
+            <span className="text-cyan-500/60 font-[400] text-[10px] tracking-[0.5em] uppercase">
+              {sectionTitle} // 0{index + 1}
+            </span>
             <div className="h-px w-10 bg-cyan-500/20"></div>
           </motion.div>
 
@@ -33,15 +49,15 @@ export default function ResearchItem({ title, authors, description, image, link,
                 {isExpanded ? 'Show Less' : 'Read Abstract'}
               </button>
 
-              {/* 保留图片展示部分 */}
               <AnimatePresence>
                 {(isExpanded || (typeof window !== 'undefined' && window.innerWidth >= 1024)) && (
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-6 space-y-10">
                     <div className="relative overflow-hidden border border-white/5 bg-[#050a18]/50 group">
                       <img src={image} alt={title} className="w-full aspect-video lg:aspect-[21/9] object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-1000" />
                     </div>
+                    {/* 使用动态 linkText */}
                     <a href={link} target="_blank" rel="noreferrer" className="text-[11px] font-[500] tracking-[0.3em] text-white/60 hover:text-cyan-400 transition-all uppercase inline-flex items-center gap-2">
-                      Explore Publication <span>→</span>
+                      {linkText} <span>→</span>
                     </a>
                   </motion.div>
                 )}
@@ -51,12 +67,12 @@ export default function ResearchItem({ title, authors, description, image, link,
         </div>
       </div>
 
-      {/* 英文版简约“流星”加载按钮 */}
+      {/* 使用动态 exploreText 的加载按钮 */}
       {isLastVisible && hasMore && (
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50">
             <button onClick={onLoadMore} className="group flex flex-col items-center gap-4">
             <span className="text-[10px] tracking-[0.5em] text-cyan-400/40 group-hover:text-cyan-400 uppercase font-[200]">
-                EXPLORE MORE RESEARCH
+                {exploreText}
             </span>
             <div className="relative w-px h-10 bg-white/10 overflow-hidden">
                 <motion.div 
@@ -68,7 +84,7 @@ export default function ResearchItem({ title, authors, description, image, link,
             <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_12px_#22d3ee] animate-pulse"></div>
             </button>
         </div>
-        )}
+      )}
     </section>
   );
 }
