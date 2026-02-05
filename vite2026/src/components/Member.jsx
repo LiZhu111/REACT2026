@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import MemberCard from './MemberCard';
 import ScrollReveal from './ScrollReveal';
 import { motion } from 'framer-motion';
-import { memberData } from '../data/memberData';
-import { siteContent } from '../data/siteContent';
+import { useTranslation } from '../hooks/useTranslation'; // 引入翻译钩子
 
 export default function Member() {
-  const { member: memConfig } = siteContent; 
+  // 从钩子中获取当前语言的数据和配置
+  const { membersData, member: memConfig } = useTranslation(); 
 
-  // 1. 彻底消除分类名称的硬编码
+  // 使用动态获取的 memConfig 和 membersData
   const categories = [
-    { id: 'faculty', title: memConfig.categoryTitles.faculty, data: memberData.faculty || [] },
-    { id: 'students', title: memConfig.categoryTitles.students, data: memberData.postdocsAndStudents || [] },
-    { id: 'former', title: memConfig.categoryTitles.former, data: memberData.former || [] }
+    { id: 'faculty', title: memConfig.categoryTitles.faculty, data: membersData.faculty || [] },
+    { id: 'students', title: memConfig.categoryTitles.students, data: membersData.postdocsAndStudents || [] },
+    { id: 'former', title: memConfig.categoryTitles.former, data: membersData.former || [] }
   ];
 
   const totalMembers = categories.reduce((sum, cat) => sum + cat.data.length, 0);
@@ -21,8 +21,9 @@ export default function Member() {
   let globalIndexCounter = 0;
 
   return (
-    <div className="space-y-24">
+    <div id="member" className="space-y-24"> {/* 确保 ID 与导航链接一致 */}
       {categories.map((category) => {
+        // 重置局部计数器逻辑以支持“加载更多”在分类间的全局计算
         const visibleInCategory = category.data.filter(() => {
           const isVisible = globalIndexCounter < visibleLimit;
           globalIndexCounter++;
@@ -45,7 +46,7 @@ export default function Member() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {visibleInCategory.map((member, idx) => (
                 <ScrollReveal key={member.id} delay={(idx % 2) * 150}>
-                  {/* 关键：透传 labels 对象 */}
+                  {/* labels 包含 research, placement, readMore 等翻译 */}
                   <MemberCard {...member} labels={memConfig.labels} />
                 </ScrollReveal>
               ))}
@@ -54,7 +55,6 @@ export default function Member() {
         );
       })}
 
-      {/* 加载更多按钮 - 文字已通过 memConfig 获取 */}
       {visibleLimit < totalMembers && (
         <div className="pt-10 flex justify-center">
           <button 
@@ -65,7 +65,6 @@ export default function Member() {
               {memConfig.exploreText}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
             </span>
-            {/* 动画节点保持不变 */}
             <div className="relative w-px h-10 bg-white/10 overflow-hidden">
               <motion.div initial={{ y: "-100%" }} animate={{ y: "100%" }} transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
                 className="absolute inset-0 w-full h-1/2 bg-gradient-to-b from-transparent via-cyan-500 to-transparent" />

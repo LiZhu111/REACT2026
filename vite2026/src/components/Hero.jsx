@@ -1,14 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { siteContent } from '../data/siteContent';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function Hero() {
-  const { hero } = siteContent;
+  const { hero } = useTranslation();
 
-  // 文字限制处理函数：确保内容不会超出设计的布局边界
   const truncate = (text, limit) => {
     if (!text) return "";
-    return text.length > limit ? text.slice(0, limit) + "..." : text;
+    return text.length > limit ? text.slice(0, limit) : text;
   };
 
   const scrollToSection = (id) => {
@@ -18,13 +17,12 @@ export default function Hero() {
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative min-h-screen w-full flex items-start min-[900px]:items-center justify-start bg-[#050a18] overflow-visible">
+    <section className="relative min-h-screen w-full flex flex-col justify-center bg-[#050a18] overflow-hidden">
       <style>
         {`
           @keyframes celestial-pulse {
@@ -32,47 +30,57 @@ export default function Hero() {
             50% { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); opacity: 1; }
           }
           .celestial-glow { animation: celestial-pulse 6s ease-in-out infinite; display: inline-block; }
-          @media (max-height: 750px) {
-            .hero-content-wrapper { padding-top: 140px !important; padding-bottom: 60px !important; }
-            .hero-title { font-size: clamp(2.5rem, 12vh, 5.5rem) !important; line-height: 1.0 !important; }
+          
+          /* 矮屏幕保护：确保内容从 Nav 下方开始，并进一步缩小字体 */
+          @media (max-height: 650px) {
+            .hero-container { 
+              padding-top: 140px !important; 
+              padding-bottom: 60px !important; 
+            }
+            .hero-title { line-height: 1.05 !important; }
           }
         `}
       </style>
 
-      {/* 背景图引用 */}
+      {/* 背景层 */}
       <motion.div 
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.75 }}
         transition={{ duration: 2.5 }}
         className="absolute inset-0 z-0 bg-cover bg-right md:bg-center bg-no-repeat pointer-events-none"
-        style={{ backgroundImage: `url('${hero.backgroundImage}')` }} 
+        style={{ backgroundImage: `url('${hero.backgroundImage || "/assets/icons/background-img.jpg"}')` }} 
       />
-      
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050a18] via-[#050a18]/40 to-transparent opacity-95 pointer-events-none" />
 
-      <div className="hero-content-wrapper relative z-20 w-full max-w-[1440px] mx-auto px-10 sm:px-16 lg:px-32 pt-32 min-[900px]:pt-0 flex flex-col">
+      {/* 内容主体 */}
+      <div className={`hero-container relative z-20 w-full max-w-[1440px] mx-auto px-10 sm:px-16 lg:px-32 flex flex-col pt-32 pb-20 ${hero.styles.wrapperPadding}`}>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.8 }}
           className="max-w-4xl"
         >
-          {/* 标题：带字数限制与动态式样 */}
-          <h1 className={`hero-title ${hero.styles.titleSize} ${hero.styles.titleFontFamily} tracking-tight leading-[0.95] mb-10 bg-clip-text text-transparent bg-gradient-to-br from-white via-white/80 to-gray-400 select-none`}>
-            {truncate(hero.title.line1, hero.constraints.lineMaxChars)} <br /> 
-            {truncate(hero.title.line2, hero.constraints.lineMaxChars)} 
-            <span className={`${hero.styles.connectorFontFamily} text-cyan-400/60 celestial-glow mx-2`}>
-              {hero.title.connector}
-            </span> <br />
-            {truncate(hero.title.line3, hero.constraints.lineMaxChars)}
+          <h1 className={`hero-title ${hero.styles.titleSize} ${hero.styles.titleFontFamily} tracking-tight leading-[1.1] mb-6 sm:mb-10 text-white select-none flex flex-wrap items-center`}>
+            {hero.titleStructure.map((item, idx) => (
+              <React.Fragment key={idx}>
+                <span className={item.className || ""}>
+                  {truncate(item.text, hero.constraints.lineMaxChars)}
+                </span>
+                {item.hasConnector && (
+                  <span className={`${hero.styles.connectorFontFamily} text-cyan-500 celestial-glow mx-3`}>
+                    {hero.connector || "&"}
+                  </span>
+                )}
+                {item.break && <div className="basis-full h-0" />}
+              </React.Fragment>
+            ))}
           </h1>
           
-          {/* 副标题：带字数限制与动态式样 */}
-          <p className={`hero-subtitle ${hero.styles.subtitleSize} font-[300] ${hero.styles.subtitleTracking} uppercase text-slate-200/90 mb-16 drop-shadow-sm`}>
+          <p className={`hero-subtitle ${hero.styles.subtitleSize} font-[300] ${hero.styles.subtitleTracking} uppercase text-slate-200/90 mb-10 sm:mb-16 drop-shadow-sm max-w-2xl`}>
             {truncate(hero.subtitle, hero.constraints.subtitleMaxChars)}
           </p>
 
-          <div className="flex flex-wrap gap-6 sm:gap-8 relative z-30">
+          <div className="flex flex-wrap gap-4 sm:gap-8 relative z-30">
             {hero.buttons.map((btn, index) => (
               <button 
                 key={index}
@@ -87,20 +95,13 @@ export default function Hero() {
                 <span className={`relative z-10 font-[500] tracking-[0.2em] text-[10px] sm:text-[11px] uppercase transition-colors ${
                   btn.primary ? 'text-white group-hover:text-cyan-200' : 'text-white/60 group-hover:text-white'
                 }`}>
-                  {truncate(btn.text, 20)}
+                  {btn.text}
                 </span>
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-cyan-400 group-hover:w-full transition-all duration-700 shadow-[0_0_15px_rgba(34,211,238,0.8)]"></div>
               </button>
             ))}
           </div>
         </motion.div>
-      </div>
-
-      {/* 底部 Tagline：带字数限制 */}
-      <div className="absolute bottom-12 left-10 lg:left-32 z-20 opacity-30 hidden min-[1200px]:min-[max-height:800px]:block select-none">
-        <p className={`${hero.styles.taglineSize} tracking-[0.15em] text-white font-light uppercase`}>
-          {truncate(hero.tagline, hero.constraints.taglineMaxChars)}
-        </p>
       </div>
     </section>
   );

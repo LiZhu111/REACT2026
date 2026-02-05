@@ -35,12 +35,6 @@ export const siteContent = {
   },
 
   hero: {
-    title: { 
-      line1: "GALAXY", 
-      line2: "STRUCTURE", 
-      line3: "DYNAMICS",
-      connector: "&" 
-    },
     subtitle: "Shanghai Astronomical Observatory · CAS",
     tagline: "Epoch J2000.0 // 31.23° N, 121.47° E",
     backgroundImage: "/assets/icons/background-img.jpg",
@@ -54,20 +48,30 @@ export const siteContent = {
       subtitleMaxChars: 60,  // 副标题最大字符
       taglineMaxChars: 40    // 底部标签最大字符
     },
-    styles: {
-      // 这里的配置可以根据语言版本灵活切换
-      titleFontFamily: "font-[200]", 
-      connectorFontFamily: "font-[100]",
-      titleSize: "text-5xl sm:text-7xl md:text-[90px] lg:text-[110px]",
-      subtitleSize: "text-sm md:text-base",
-      subtitleTracking: "tracking-[0.25em]",
-      taglineSize: "text-[9px]"
-    }
+    titleStructure: [
+    { text: "GALAXY", break: true },
+    { text: "STRUCTURE", hasConnector: true, break: true },
+    { text: "DYNAMICS" }
+  ],
+  styles: {
+    // 增加高度适配：当屏幕高度小于 750px 时，减少 Padding 和 字号
+    wrapperPadding: "pt-0 max-h-[750px]:pt-12", 
+    titleFontFamily: "font-[200]",
+    connectorFontFamily: "font-[100]",
+    // 阶梯式响应：[极窄, 小, 中, 大, 极大] + [矮屏幕适配]
+    titleSize: "text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[110px] max-h-[850px]:text-6xl max-h-[700px]:text-5xl max-h-[600px]:text-4xl",
+    wrapperPadding: "max-h-[850px]:pt-32 max-h-[700px]:pt-28", 
+    subtitleSize: "text-sm md:text-base max-h-[700px]:text-xs",
+    subtitleTracking: "tracking-[0.25em]",
+    taglineSize: "text-[9px]",
+    buttonTextSize: "text-[10px] sm:text-[11px]",
+    buttonTracking: "tracking-[0.2em]"
+  },
   },
 
  about: {
-    sectionNum: "01",
-    sectionTitle: "Mission",
+  archiveLabel: "Archive // 01",
+  sectionTitle: "Our Mission",
     // 标题结构：className 控制样式，break 控制桌面端换行
     titleStructure: [
       { text: "Advancing our understanding of ", className: "font-[100]", break: true },
@@ -85,32 +89,36 @@ export const siteContent = {
     constraints: {
       mobileMaxChars: 120, // 移动端折叠时显示的字符数
       thresholdWidth: 1024 // 判定为移动端的像素阈值 (lg 断点)
-    }
+    },
+    styles: {
+    btnTextSize: "text-base lg:text-lg",
+    // 英文单词通常比中文长，字号可以稍微调小 1px 以保持单行显示
+    fieldTagSize: "text-[15px] lg:text-[17px]", 
+    fieldTagTracking: "tracking-[0.05em]" 
+  }
   },
 
 research: {
-    sectionNum: "02",
-    sectionTitle: "Research",
+    archiveLabel: "Archive // 02", // 或者 "项目编号 02"
+    sectionTitle: "Recent Research",
+    sideText: "Research", // 侧边垂直文字
     exploreText: "Explore More Research",
     linkText: "Explore Publication",
     // 100% 零硬编码：新增装饰性标签
+    readMoreText: "READ MORE",
+    readLessText: "SHOW LESS",
     labels: {
       caseBadge: "// RESEARCH CASE",
       summary: "PROJECT SUMMARY",
       authorship: "AUTHORSHIP",
       arrow: "→"
     },
-    // 样式参数化
-    styles: {
-      bgEven: "bg-[#0a1229]",
-      bgOdd: "bg-[#101b39]",
-      accentColor: "text-cyan-500"
-    }
+    
   },
 
   member: {
-    sectionNum: "03",
-    sectionTitle: "Our Team",
+    sarchiveLabel: "Archive // 03",
+    sectionTitle: "Group Members",
     exploreText: "Explore More Members",
     labels: {
       research: "Research:",
@@ -158,6 +166,7 @@ research: {
       line2: "Galaxy Dynamics Group",
       orgName: "Shanghai Astronomical Observatory, Chinese Academy of Sciences",
       address: "80 Nandan Road, Xuhui District, Shanghai 200030, China",
+      locationLabel: "LOC." // 提取此处
     },
     sections: [
       {
