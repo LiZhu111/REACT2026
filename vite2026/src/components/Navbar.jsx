@@ -5,8 +5,11 @@ export default function Navbar() {
   const [active, setActive] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // 从 Hook 获取完全抽象的数据
-  const { header, langData, targetPath } = useTranslation();
+  // 从 Hook 获取当前语言标识 lang，以及 header 数据、语言切换数据和目标路径
+  const { header, langData, targetPath, lang } = useTranslation();
+
+  // 动态定义首页路径：如果是中文则指向 /zh，否则指向 /
+  const homePath = lang === 'zh' ? '/zh' : '/';
 
   // 文字限制工具函数
   const truncate = (text, limit) => {
@@ -32,8 +35,8 @@ export default function Navbar() {
     }`}>
       <div className="max-w-[1440px] mx-auto px-10 sm:px-16 lg:px-32 flex justify-between items-center">
         
-        {/* 1. Logo 部分：实现零硬编码与字符限制 */}
-        <a href="/" className="flex flex-col group select-none">
+        {/* 修改点：将 Logo 的 href 设置为动态生成的 homePath */}
+        <a href={homePath} className="flex flex-col group select-none">
           <span className={`text-3xl ${header.styles.logoLine1Font} text-white tracking-[0.15em] leading-none transition-all group-hover:text-cyan-400`}>
             {truncate(header.logo.line1, header.constraints.logoLine1Max)}
           </span>
@@ -48,7 +51,7 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* 2. 桌面端菜单：样式完全由数据驱动 */}
+        {/* 桌面端菜单 */}
         <div className="hidden lg:flex items-center gap-10">
           <ul className="flex items-center gap-10">
             {header.navLinks.map((link) => (
@@ -81,7 +84,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* 3. 移动端全屏菜单 */}
+      {/* 移动端全屏菜单 */}
       <div className={`fixed inset-0 h-screen bg-[#050a18]/98 backdrop-blur-3xl flex flex-col items-center transition-all duration-700 lg:hidden overflow-y-auto ${
         active ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
       }`}>

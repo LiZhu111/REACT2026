@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 
 export default function Hero() {
   const { hero } = useTranslation();
+  const [showGlow, setShowGlow] = useState(false); 
+  const [isGlowFinished, setIsGlowFinished] = useState(false); 
 
   const truncate = (text, limit) => {
     if (!text) return "";
@@ -31,13 +33,37 @@ export default function Hero() {
           }
           .celestial-glow { animation: celestial-pulse 6s ease-in-out infinite; display: inline-block; }
           
-          /* 矮屏幕保护：确保内容从 Nav 下方开始，并进一步缩小字体 */
+          @keyframes shooting-star {
+            0% { background-position: -150% 0; }
+            100% { background-position: 150% 0; }
+          }
+
+          .animate-tagline-glow {
+            background: linear-gradient(
+              90deg, 
+              transparent 0%, 
+              transparent 40%, 
+              rgba(34, 211, 238, 0.8) 50%, 
+              transparent 60%, 
+              transparent 100%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            display: inline-block;
+            
+            /* 关键点 1：使用 1 forwards 确保动画结束后停留在 150% 的位置（不可见），不会跳回起点 */
+            animation: shooting-star 4s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+            
+            opacity: ${showGlow ? 1 : 0};
+            transition: opacity 1s ease-in;
+          }
+
           @media (max-height: 650px) {
             .hero-container { 
               padding-top: 140px !important; 
               padding-bottom: 60px !important; 
             }
-            .hero-title { line-height: 1.05 !important; }
           }
         `}
       </style>
@@ -52,14 +78,15 @@ export default function Hero() {
       />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050a18] via-[#050a18]/40 to-transparent opacity-95 pointer-events-none" />
 
-      {/* 内容主体 */}
       <div className={`hero-container relative z-20 w-full max-w-[1440px] mx-auto px-10 sm:px-16 lg:px-32 flex flex-col pt-32 pb-20 ${hero.styles.wrapperPadding}`}>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.8 }}
+          onAnimationComplete={() => setShowGlow(true)} 
           className="max-w-4xl"
         >
+          {/* 标题 */}
           <h1 className={`hero-title ${hero.styles.titleSize} ${hero.styles.titleFontFamily} tracking-tight leading-[1.1] mb-6 sm:mb-10 text-white select-none flex flex-wrap items-center`}>
             {hero.titleStructure.map((item, idx) => (
               <React.Fragment key={idx}>
@@ -76,11 +103,41 @@ export default function Hero() {
             ))}
           </h1>
           
-          <p className={`hero-subtitle ${hero.styles.subtitleSize} font-[300] ${hero.styles.subtitleTracking} uppercase text-slate-200/90 mb-10 sm:mb-16 drop-shadow-sm max-w-2xl`}>
-            {truncate(hero.subtitle, hero.constraints.subtitleMaxChars)}
+          {/* 副标题 */}
+          <p className={`hero-subtitle ${hero.styles.subtitleSize} font-[300] ${hero.styles.subtitleTracking} text-slate-200/90 mb-10 sm:mb-16 drop-shadow-sm max-w-2xl`}>
+            {hero.subtitleStructure ? hero.subtitleStructure.map((part, i) => (
+              <span 
+                key={i} 
+                className={`
+                  ${part.highlight ? "text-cyan-400 font-[400]" : ""} 
+                  ${part.className || ""}
+                `}
+              >
+                {part.text}
+              </span>
+            )) : truncate(hero.subtitle, hero.constraints.subtitleMaxChars)}
           </p>
+          
+          {/* Tagline 部分 */}
+          <div className={`flex items-center gap-4 ${hero.styles.taglineMarginBottom} mt-6`}>
+            <div className="h-px w-8 bg-cyan-500/50"></div>
+            <span className={`relative text-white/40 font-mono ${hero.styles.taglineTracking} uppercase ${hero.styles.taglineSize}`}>
+              <span className="opacity-100">{hero.tagline}</span>
+              
+              {/* 关键点 2：双保险。forwards 停住动画，onAnimationEnd 移除 DOM */}
+              {showGlow && !isGlowFinished && (
+                <span 
+                  className="absolute inset-0 animate-tagline-glow text-transparent pointer-events-none"
+                  onAnimationEnd={() => setIsGlowFinished(true)} 
+                >
+                  {hero.tagline}
+                </span>
+              )}
+            </span>
+          </div>
 
-          <div className="flex flex-wrap gap-4 sm:gap-8 relative z-30">
+          {/* 按钮与链接 */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-8 relative z-30">
             {hero.buttons.map((btn, index) => (
               <button 
                 key={index}
@@ -92,7 +149,7 @@ export default function Hero() {
                 <div className={`absolute inset-0 border transition-all duration-500 ${
                   btn.primary ? 'border-white/20 group-hover:border-cyan-500/50' : 'border-white/10 group-hover:border-white/40'
                 }`}></div>
-                <span className={`relative z-10 font-[500] tracking-[0.2em] text-[10px] sm:text-[11px] uppercase transition-colors ${
+                <span className={`relative z-10 font-[500] ${hero.styles.buttonTracking || "tracking-[0.2em]"} ${hero.styles.buttonTextSize || hero.styles.btnTextSize || "text-[10px] sm:text-[11px]"} uppercase transition-colors ${
                   btn.primary ? 'text-white group-hover:text-cyan-200' : 'text-white/60 group-hover:text-white'
                 }`}>
                   {btn.text}
@@ -100,6 +157,13 @@ export default function Hero() {
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] bg-cyan-400 group-hover:w-full transition-all duration-700 shadow-[0_0_15px_rgba(34,211,238,0.8)]"></div>
               </button>
             ))}
+
+            <a 
+              href="#publications" 
+              className="ml-2 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-white/40 hover:text-cyan-400 transition-colors duration-300"
+            >
+              
+            </a>
           </div>
         </motion.div>
       </div>

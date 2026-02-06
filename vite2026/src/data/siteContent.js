@@ -35,8 +35,16 @@ export const siteContent = {
   },
 
   hero: {
-    subtitle: "Shanghai Astronomical Observatory · CAS",
-    tagline: "Epoch J2000.0 // 31.23° N, 121.47° E",
+    titleStructure: [
+    { text: "GALAXY", break: true },
+    { text: "STRUCTURE", hasConnector: true, break: true },
+    { text: "DYNAMICS" }
+  ],
+    subtitleStructure: [
+    { text: "Deciphering the mechanisms of galaxy formation and evolution through integrated dynamical modeling and multi-wavelength observations." },
+   
+  ],
+    tagline: "Shanghai Astronomical Observatory · CAS",
     backgroundImage: "/assets/icons/background-img.jpg",
     buttons: [
       { text: "Explore Research", targetId: "research", primary: true },
@@ -45,57 +53,65 @@ export const siteContent = {
     // 零硬编码：文字限制与样式配置
     constraints: {
       lineMaxChars: 15,      // 标题每行最大字符
-      subtitleMaxChars: 60,  // 副标题最大字符
+      subtitleMaxChars: 360,  // 副标题最大字符
       taglineMaxChars: 40    // 底部标签最大字符
     },
-    titleStructure: [
-    { text: "GALAXY", break: true },
-    { text: "STRUCTURE", hasConnector: true, break: true },
-    { text: "DYNAMICS" }
-  ],
+    
   styles: {
-    // 增加高度适配：当屏幕高度小于 750px 时，减少 Padding 和 字号
-    wrapperPadding: "pt-0 max-h-[750px]:pt-12", 
+  // 合并后的 wrapperPadding
+    wrapperPadding: "max-h-[850px]:pt-32 max-h-[700px]:pt-28 pt-0 max-h-[750px]:pt-12", 
     titleFontFamily: "font-[200]",
     connectorFontFamily: "font-[100]",
-    // 阶梯式响应：[极窄, 小, 中, 大, 极大] + [矮屏幕适配]
     titleSize: "text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[110px] max-h-[850px]:text-6xl max-h-[700px]:text-5xl max-h-[600px]:text-4xl",
-    wrapperPadding: "max-h-[850px]:pt-32 max-h-[700px]:pt-28", 
-    subtitleSize: "text-sm md:text-base max-h-[700px]:text-xs",
-    subtitleTracking: "tracking-[0.25em]",
-    taglineSize: "text-[9px]",
-    buttonTextSize: "text-[10px] sm:text-[11px]",
+    subtitleSize: "text-sm sm:text-base lg:text-lg",
+    // 合并后的 subtitleTracking
+    subtitleTracking: "tracking-wide leading-[1.8] font-[300] italic antialiased", 
+    subtitleColor: "text-slate-300/80",
+    subtitleMarginBottom: "mb-12 lg:mb-16",
+    taglineSize: "text-[11px] sm:text-xs",
+    taglineTracking: "tracking-[0.3em]", // 统一命名
+    taglineMarginBottom: "mb-20 lg:mb-24",
+    buttonTextSize: "text-[12px] sm:text-[13px]", // 统一命名
     buttonTracking: "tracking-[0.2em]"
   },
   },
 
  about: {
-  archiveLabel: "Archive // 01",
-  sectionTitle: "Our Mission",
-    // 标题结构：className 控制样式，break 控制桌面端换行
+    archiveLabel: "RESEARCH MISSION // 01",
+    sectionTitle: "About Us",
     titleStructure: [
-      { text: "Advancing our understanding of ", className: "font-[100]", break: true },
+      { text: "Advancing our understanding of ", className: "font-[100] text-white/70", break: true },
       { text: "Galactic Evolution", className: "font-[300] text-cyan-400", break: true },
-      { text: " through computational and observational rigor.", className: "font-[100]", break: false }
+      { text: "through Dynamics & Observations led by ", className: "font-[100] text-white/70", break: true },
+      { text: "Ling Zhu", className: "font-[300] text-cyan-400", break: false },
     ],
-    description: "The Galaxy Structure and Dynamics group at Shanghai Astronomical Observatory (SHAO) specializes in the physical processes that shape galaxies across cosmic time. Our research bridges the gap between massive cosmological simulations and high-precision sky surveys. We utilize high-resolution numerical simulations and observational data to probe dark matter and galactic evolution across cosmic time.",
-    coreFields: ["Numerical Simulations", "Dark Matter Dynamics", "Galactic Archaeology"],
-    labels: {
-      readMore: "Read More",
-      showLess: "Show Less",
-      separator: "//"
+    description: "Our group at Shanghai Astronomical Observatory (SHAO) specializes in the physical processes that shape galaxies across cosmic time. By bridging the gap between massive cosmological simulations and high-precision sky surveys, we utilize advanced dynamical modeling to decode the complex fossil records of galaxies and probe the underlying nature of dark matter.",
+    labels: { 
+      readMore: "Explore Full Mission", 
+      showLess: "Condense View", 
+      separator: "//",
+      linkText: "Explore Publication" // 已根据您的要求确保包含此项
     },
-    // 字数与显示限制
-    constraints: {
-      mobileMaxChars: 120, // 移动端折叠时显示的字符数
-      thresholdWidth: 1024 // 判定为移动端的像素阈值 (lg 断点)
+    coreFields: [
+      "Chemo-dynamics Modeling",
+      "Galaxy Assembly History",
+      "Dark Matter Distribution",
+      "SMBH Mass Estimation",
+      "Multi-component Kinematics"
+    ],
+    constraints: { 
+      thresholdWidth: 1024, 
+      mobileMaxChars: 90 
     },
-    styles: {
-    btnTextSize: "text-base lg:text-lg",
-    // 英文单词通常比中文长，字号可以稍微调小 1px 以保持单行显示
-    fieldTagSize: "text-[15px] lg:text-[17px]", 
-    fieldTagTracking: "tracking-[0.05em]" 
-  }
+    styles: { 
+      // 这里的 text-5xl 比之前的 6xl/7xl 更显精致
+      titleSize: "text-2xl sm:text-4xl lg:text-5xl xl:text-[52px]",
+      titleBottomMargin: "mb-12 lg:mb-24", // 增大间距
+      descriptionLeading: "leading-relaxed lg:leading-[2]", // 增加行间距
+      sectionPadding: "py-24 lg:py-48", // 显著增加上下呼吸感
+      fieldTagSize: "text-[12px] lg:text-[14px]",
+      fieldTagTracking: "tracking-[0.15em]"
+      }
   },
 
 research: {

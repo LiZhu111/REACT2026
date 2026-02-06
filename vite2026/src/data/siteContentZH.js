@@ -32,7 +32,9 @@ export const siteContent = {
 
   hero: {
     backgroundImage: "/assets/icons/background-img.jpg",
-    subtitle: "利用先进动力学模型与观测数据，揭示星系的形成与演化奥秘",
+    subtitleStructure: [
+    { text: "利用先进动力学模型与观测数据，揭示星系的形成与演化奥秘" },
+  ],
     tagline: "上海天文台 · 星系动力学研究小组",
     connector: "&",
     buttons: [
@@ -55,17 +57,25 @@ export const siteContent = {
       wrapperPadding: "max-h-[850px]:pt-32 max-h-[700px]:pt-28",
       titleSize: "text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-[90px] max-h-[850px]:text-5xl max-h-[700px]:text-4xl max-h-[600px]:text-3xl",
       subtitleTracking: "tracking-[0.05em]",
-      taglineSize: "text-[12px]",
+      taglineSize: "text-[11px] sm:text-xs",
+      taglineMarginBottom: "mb-20 lg:mb-24", // 增加与按钮的距离
       // 修改点：Hero 按钮字体由原 10-11px 提升至 12-13px (即大一号)
-      buttonTextSize: "text-[15px] lg:text-[16px]",
-      buttonTracking: "tracking-[0.15em]"
+      taglineTracking: "tracking-[0.2em] font-[200] opacity-90", // 缩小间距使流星效果更连贯
+      buttonTextSize: "text-[15px] sm:text-[17px]", // 将 btnTextSize 改为 buttonTextSize 保持一致
+      buttonTracking: "tracking-[0.1em]"
     },
   },
 
   about: {
     archiveLabel: "研究使命 01",
     sectionTitle: "关于我们",
-    sectionTitleZH: "自2018年起，致力于构建精确的星系演化动力学图景",
+    titleStructure: [
+      { text: "自2018年起，在 ", className: "font-[100]", break: false },
+      { text: "朱玲", className: "font-[500] text-cyan-400", break: false },
+      { text: " 研究员带领下，团队致力于构建精确的", className: "font-[100]", break: true },
+      { text: "星系演化动力学", className: "font-[500] text-cyan-400", break: false },
+      { text: "图景", className: "font-[300] text-white/95", break: false },
+    ],
     description: "我们隶属于中国科学院上海天文台。研究组利用先进的动力学建模技术，结合 Gaia、APOGEE 等前沿巡天数据，深入探索星系的形成与演化。我们通过高精度数值模拟与观测数据的交叉比对，旨在定量揭示银河系及近邻星系的物质分布与轨道结构。",
     labels: {
       readMore: "展开全文",
@@ -78,11 +88,13 @@ export const siteContent = {
       mobileMaxChars: 90
     },
     styles: {
-      // 修改点：About 部分的展开/收起按钮字体增大
-      btnTextSize: "text-base lg:text-lg",
-      fieldTagSize: "text-[14px] lg:text-[16px]", 
-      fieldTagTracking: "tracking-[0.02em]"
-    }
+    titleSize: "text-xl sm:text-3xl lg:text-4xl xl:text-[46px]",
+    titleBottomMargin: "mb-10 lg:mb-20",
+    descriptionLeading: "leading-relaxed lg:leading-[1.9]",
+    sectionPadding: "py-20 lg:py-40",
+    fieldTagSize: "text-[14px] lg:text-[15px]", 
+    fieldTagTracking: "tracking-[0.05em]"
+  }
   },
 
   research: {
