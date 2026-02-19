@@ -74,12 +74,13 @@ export default function ResearchItem({
         </div>
       </div>
 
-      {/* 优化后的加载更多按钮：在小屏增加 mt-32 防止拥挤，与 Member 部分保持一致 */}
+      {/* 加载更多按钮：与 Member 部分保持一致格式 */}
       {isLastVisible && hasMore && (
-        <div className="relative mt-32 pb-12 lg:absolute lg:bottom-12 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0 lg:pb-0 z-50 w-full flex justify-center">
-            <button onClick={onLoadMore} className="group flex flex-col items-center gap-4">
-            <span className="text-[10px] tracking-[0.5em] text-cyan-400/40 group-hover:text-cyan-400 uppercase font-[200]">
+        <div className="pt-10 flex justify-center">
+          <button onClick={onLoadMore} className="group flex flex-col items-center gap-4 transition-all">
+            <span className="text-[10px] tracking-[0.5em] text-cyan-400/40 group-hover:text-cyan-400 uppercase font-[200] relative px-4">
                 {exploreText}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
             </span>
             <div className="relative w-px h-10 bg-white/10 overflow-hidden">
                 <motion.div 
