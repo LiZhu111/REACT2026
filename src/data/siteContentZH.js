@@ -60,7 +60,7 @@ export const siteContent = {
       titleMarginBottom: "mb-2 sm:mb-3 lg:mb-6",
       subtitleMarginBottom: "mb-6",
       taglineSize: "text-[11px] sm:text-xs",
-      taglineMarginBottom: "mb-8", // 增加与按钮的距离
+      taglineMarginBottom: "mb-8 sm:mb-12", // 中等屏幕增加与按钮的距离
       // 修改点：Hero 按钮字体由原 10-11px 提升至 12-13px (即大一号)
       taglineTracking: "tracking-[0.2em] font-[200] opacity-90", // 缩小间距使流星效果更连贯
       buttonTextSize: "text-[15px] sm:text-[17px]", // 将 btnTextSize 改为 buttonTextSize 保持一致
