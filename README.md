@@ -1,16 +1,219 @@
-# React + Vite
+# 星系动力学研究小组 - 官方网站
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+这是上海天文台朱玲研究员领导的星系动力学研究小组的官方网站。该项目基于 React + Vite 构建，支持中英文双语切换，采用现代前端技术提供流畅的用户体验。
 
-Currently, two official plugins are available:
+## 📋 项目概述
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+本网站展示了研究小组的以下内容：
+- 🏠 **Hero 部分**：醒目的标题和号召性行动按钮
+- 📖 **About 部分**：研究使命和核心研究领域介绍
+- 🔬 **Research 部分**：最新研究项目和成果展示
+- 👥 **Members 部分**：团队成员信息（教员、博后、学生和校友）
+- 💼 **Opportunities 部分**：招聘时机和联系方式
+- 📞 **Footer 部分**：机构信息和导航链接
 
-## React Compiler
+## 🛠️ 技术栈
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **框架**：React 18+ + Vite 7
+- **样式**：Tailwind CSS（响应式设计）
+- **动画**：Framer Motion（平滑过渡效果）
+- **国际化**：自定义 i18n 钩子（中英文支持）
+- **开发工具**：ESLint、PostCSS
 
-## Expanding the ESLint configuration
+## 📦 安装步骤
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 前置要求
+- Node.js 16.0+
+- npm 或 yarn 包管理器
+
+### 1. 克隆仓库
+```bash
+git clone https://github.com/LiZhu111/REACT2026.git
+cd REACT2026
+```
+
+### 2. 安装依赖
+```bash
+npm install
+```
+
+### 3. 启动开发服务器
+```bash
+npm run dev
+```
+项目将在 `http://localhost:5173` 启动（具体端口见终端输出）
+
+### 4. 构建生产版本
+```bash
+npm run build
+```
+生成的文件存储在 `dist/` 目录
+
+## 📁 项目结构
+
+```
+src/
+├── components/              # React 组件
+│   ├── Navbar.jsx          # 导航栏
+│   ├── Hero.jsx            # Hero 部分
+│   ├── About.jsx           # 关于部分
+│   ├── Research.jsx        # 研究部分
+│   ├── ResearchItem.jsx    # 研究项目卡片
+│   ├── Member.jsx          # 团队成员部分
+│   ├── MemberCard.jsx      # 成员卡片
+│   ├── Opportunities.jsx   # 机会招聘部分
+│   ├── Footer.jsx          # 页脚
+│   └── ScrollReveal.jsx    # 滚动显示动画
+├── data/                    # 配置和数据文件
+│   ├── siteContent.js      # 英文内容和样式配置
+│   ├── siteContentZH.js    # 中文内容和样式配置
+│   ├── memberData.js       # 英文成员数据
+│   ├── memberDataZH.js     # 中文成员数据
+│   ├── researchData.js     # 英文研究数据
+│   └── researchDataZH.js   # 中文研究数据
+├── hooks/                   # 自定义 React 钩子
+│   └── useTranslation.js   # 国际化钩子
+├── App.jsx                 # 主应用组件
+├── main.jsx                # 入口文件
+└── index.css               # 全局样式
+
+public/
+├── assets/                  # 静态资源
+│   ├── icons/              # 图标和背景图
+│   ├── members/            # 成员头像
+│   └── research/           # 研究项目图片
+```
+
+## 🎨 配置文件说明
+
+### siteContent.js 和 siteContentZH.js
+
+这两个文件采用**零硬编码**设计理念，集中管理所有内容和样式：
+
+```javascript
+export const siteContent = {
+  header: { /* 导航栏配置 */ },
+  hero: { /* Hero 部分配置 */ },
+  about: { /* 关于部分配置 */ },
+  research: { /* 研究部分配置 */ },
+  member: { /* 成员部分配置 */ },
+  opportunities: { /* 机会部分配置 */ },
+  footer: { /* 页脚配置 */ }
+};
+```
+
+**优势**：
+- 集中管理内容和样式，易于维护
+- 支持快速国际化切换
+- 样式使用 Tailwind CSS 类名，支持响应式设计
+
+### 样式配置示例
+每个部分都有 `styles` 对象，包含所有 Tailwind CSS 类名：
+
+```javascript
+hero: {
+  styles: {
+    wrapperPadding: "pt-48 sm:pt-40",  // 顶部 padding
+    titleSize: "text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl",
+    subtitleSize: "text-sm sm:text-base lg:text-lg",
+    taglineSize: "text-[11px] sm:text-xs",
+    buttonTextSize: "text-[12px] sm:text-[13px]"
+  }
+}
+```
+
+## 🌐 国际化使用
+
+点击页面右上角的语言按钮（EN / 中文）可切换语言。系统会自动加载对应语言的内容：
+- **英文**：使用 `siteContent.js` 和 `*Data.js` 文件
+- **中文**：使用 `siteContentZH.js` 和 `*DataZH.js` 文件
+
+使用自定义的 `useTranslation()` 钩子访问当前语言的内容：
+```jsx
+const { hero } = useTranslation();
+// 自动获取当前语言的 Hero 配置
+```
+
+## 🎯 响应式设计规范
+
+项目使用 Tailwind CSS 的响应式前缀：
+- `sm`: ≥640px （平板）
+- `md`: ≥768px （小笔记本电脑）
+- `lg`: ≥1024px （桌面电脑）
+- `xl`: ≥1280px （大屏幕）
+
+示例：
+```javascript
+// Hero 标题大小随屏幕尺寸自适应
+titleSize: "text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl"
+```
+
+## 🔧 常见编辑任务
+
+### 修改 Hero 离导航栏的距离
+编辑 `src/data/siteContent.js` 或 `src/data/siteContentZH.js` 中的：
+```javascript
+hero: {
+  styles: {
+    wrapperPadding: "pt-48 sm:pt-40",  // 修改此项
+    // ...
+  }
+}
+```
+- `pt-48`: 小屏幕顶部 padding（192px）
+- `sm:pt-40`: 中等及以上屏幕顶部 padding（160px）
+
+### 修改字体大小和间距
+在对应部分的 `styles` 对象中编辑 Tailwind CSS 类名即可。
+
+### 添加新成员或研究项目
+编辑相应的数据文件：
+- `src/data/memberData.js` - 英文成员
+- `src/data/memberDataZH.js` - 中文成员
+- `src/data/researchData.js` - 英文研究
+- `src/data/researchDataZH.js` - 中文研究
+
+## 🚀 开发工作流
+
+### 快速修改内容
+直接编辑 `src/data/` 中的配置文件，无需修改组件代码。
+
+### 编辑和保存
+```bash
+# 1. 修改文件后，Vite 会自动热更新
+# 2. 检查浏览器预览效果
+# 3. 提交更改
+git add .
+git commit -m "描述您的更改"
+git push origin main
+```
+
+### 构建生产版本
+```bash
+npm run build    # 生成 dist 目录
+npm run preview  # 预览生产版本（localhost:4173）
+```
+
+## 📝 Git 工作流
+
+### 提交到 GitHub
+```bash
+git add .
+git commit -m "描述您的更改"
+git push origin main
+```
+
+### 查看提交历史
+```bash
+git log --oneline
+```
+
+## 📞 联系信息
+
+- **邮箱**：lzhu@shao.ac.cn
+- **机构**：上海天文台，中国科学院
+- **地址**：80 Nandan Road, Xuhui District, Shanghai 200030, China
+
+## 📄 许可证
+
+© 2026 Galaxy Dynamics Group. All rights reserved.
