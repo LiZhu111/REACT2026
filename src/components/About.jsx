@@ -3,20 +3,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation'; 
 
 export default function About() {
+  // 核心：调用翻译钩子获取最新数据
   const { about, isEnglish } = useTranslation(); 
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // 当语言切换时，重置折叠状态
+  useEffect(() => {
+    if (isMobile) {
+      setIsExpanded(false);
+    }
+  }, [isEnglish, isMobile]);
+
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < (about.constraints?.thresholdWidth || 1024);
+      const threshold = about?.constraints?.thresholdWidth || 1024;
+      const mobile = window.innerWidth < threshold;
       setIsMobile(mobile);
       if (!mobile) setIsExpanded(true); // 桌面端强制展开
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [about.constraints]);
+  }, [about?.constraints]);
 
   // 定义局部动画
   const itemVariants = {
@@ -28,11 +37,14 @@ export default function About() {
     }
   };
 
+  // 如果数据还没加载出来，返回空（防止报错）
+  if (!about) return null;
+
   return (
-    // 确保使用 relative 且没有奇怪的 h-screen 限制，防止遮挡下方 section
     <section 
       id="about" 
-      className={`relative z-20 w-full bg-[#101b39] overflow-hidden ${about.styles.sectionPadding || 'py-32'}`}
+      key={isEnglish ? 'about-en' : 'about-zh'} // 关键：语言切换时重新渲染组件
+      className={`relative z-20 w-full bg-[#101b39] overflow-hidden ${about.styles?.sectionPadding || 'py-32'}`}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(34,211,238,0.03),transparent)] pointer-events-none"></div>
 
@@ -59,14 +71,14 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={itemVariants}
-            className={`${about.styles.titleSize} text-white leading-[1.4] ${about.styles.titleBottomMargin}`}
+            className={`${about.styles?.titleSize || 'text-4xl'} text-white leading-[1.4] ${about.styles?.titleBottomMargin || 'mb-12'}`}
           >
             {about.titleStructure?.map((item, idx) => (
               <React.Fragment key={idx}>
                 <span className={item.className}>{item.text}</span>
                 {item.break && <br className="hidden md:block" />}
               </React.Fragment>
-            ))}
+            )) || <span>{about.sectionTitle}</span>}
           </motion.h2>
 
           <div className="space-y-12 lg:space-y-20 max-w-4xl"> 
@@ -78,9 +90,9 @@ export default function About() {
               variants={itemVariants}
               className="relative"
             >
-              <p className={`text-base lg:text-xl text-slate-300/90 font-[300] border-l-2 border-cyan-500/20 pl-8 lg:pl-12 ${about.styles.descriptionLeading} ${isEnglish ? 'tracking-wide' : 'tracking-normal'}`}>
+              <p className={`text-base lg:text-xl text-slate-300/90 font-[300] border-l-2 border-cyan-500/20 pl-8 lg:pl-12 ${about.styles?.descriptionLeading || 'leading-relaxed'} ${isEnglish ? 'tracking-wide' : 'tracking-normal'}`}>
                 {isMobile && !isExpanded 
-                  ? about.description.slice(0, about.constraints.mobileMaxChars) + "..." 
+                  ? (about.description?.slice(0, about.constraints?.mobileMaxChars || 150) + "...") 
                   : about.description}
               </p>
 
@@ -89,31 +101,31 @@ export default function About() {
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="mt-6 text-[10px] tracking-[0.2em] uppercase text-cyan-500/80 flex items-center gap-2"
                 >
-                  <span>{isExpanded ? about.labels.showLess : about.labels.readMore}</span>
+                  <span>{isExpanded ? (about.labels?.showLess || "Less") : (about.labels?.readMore || "More")}</span>
                   <motion.span animate={{ y: isExpanded ? -2 : 2 }} transition={{ repeat: Infinity, duration: 1.5 }}>↓</motion.span>
                 </button>
               )}
             </motion.div>
 
-            {/* 4. 核心领域 - 优化 AnimatePresence 确保不影响外部布局 */}
+            {/* 4. 核心领域 */}
             <div className="relative">
               <AnimatePresence initial={false}>
                 {(isExpanded || !isMobile) && (
                   <motion.div 
-                    key="core-fields"
+                    key="core-fields-container"
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className={`pt-10 lg:pt-16 border-t border-white/5 flex flex-wrap gap-x-12 lg:gap-x-24 gap-y-8 font-[400] text-slate-400/80 ${about.styles.fieldTagSize} ${about.styles.fieldTagTracking}`}>
-                      {about.coreFields.map((field, index) => (
+                    <div className={`pt-10 lg:pt-16 border-t border-white/5 flex flex-wrap gap-x-12 lg:gap-x-24 gap-y-8 font-[400] text-slate-400/80 ${about.styles?.fieldTagSize || 'text-xs'} ${about.styles?.fieldTagTracking || 'tracking-widest'}`}>
+                      {about.coreFields?.map((field, index) => (
                         <motion.div 
                           key={index} 
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 + (index * 0.05) }} // 稍微加快一点进入速度
+                          transition={{ delay: 0.1 + (index * 0.05) }}
                           whileHover={{ x: 10, color: '#22d3ee' }}
                           className="flex items-center gap-4 cursor-default group whitespace-nowrap"
                         >

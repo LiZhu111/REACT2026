@@ -54,7 +54,8 @@ export const siteContent = {
    
   ],
     tagline: "Shanghai Astronomical Observatory · CAS",
-    backgroundImage: "/assets/icons/background-img.jpg",
+    // 修正后的路径：去掉了开头的 /，确保子路径部署时背景图能加载
+    backgroundImage: "assets/icons/background-img.jpg", 
     buttons: [
       { text: "Explore Research", targetId: "research", primary: true },
       { text: "Our Team", targetId: "member", primary: false }
@@ -187,8 +188,8 @@ research: {
   footer: {
     backToTop: "Back to Top",
     brand: {
-      line1: "SHAO",
-      line2: "Galaxy Dynamics Group",
+      line1: "Galaxy Dynamics Group",
+      line2: "SHAO",
       orgName: "Shanghai Astronomical Observatory, Chinese Academy of Sciences",
       address: "80 Nandan Road, Xuhui District, Shanghai 200030, China",
       locationLabel: "LOC.", // 提取此处
@@ -226,7 +227,7 @@ research: {
 
     // 2. 零硬编码：样式配置 (支持双语切换调整)
     styles: {
-      brandTracking: "tracking-[0.3em]",
+      brandTracking: "tracking-[0.1em]",
       orgTextSize: "text-[13px] lg:text-sm",
       orgFontWeight: "font-[400]",
       addressTextSize: "text-[12px] lg:text-[13px]",

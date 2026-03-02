@@ -31,10 +31,11 @@ export const siteContent = {
   },
 
   hero: {
-    backgroundImage: "/assets/icons/background-img.jpg",
+    // 修改后：去掉了开头的 /
+    backgroundImage: "assets/icons/background-img.jpg",
     subtitleStructure: [
-    { text: "利用先进动力学模型与观测数据，揭示星系的形成与演化奥秘" },
-  ],
+      { text: "利用先进动力学模型与观测数据，揭示星系的形成与演化奥秘" },
+    ],
     tagline: "上海天文台 · 星系动力学研究小组",
     connector: "&",
     buttons: [
@@ -60,10 +61,9 @@ export const siteContent = {
       titleMarginBottom: "mb-2 sm:mb-3 lg:mb-6",
       subtitleMarginBottom: "mb-6",
       taglineSize: "text-[11px] sm:text-xs",
-      taglineMarginBottom: "mb-8 sm:mb-12", // 中等屏幕增加与按钮的距离
-      // 修改点：Hero 按钮字体由原 10-11px 提升至 12-13px (即大一号)
-      taglineTracking: "tracking-[0.2em] font-[200] opacity-90", // 缩小间距使流星效果更连贯
-      buttonTextSize: "text-[15px] sm:text-[17px]", // 将 btnTextSize 改为 buttonTextSize 保持一致
+      taglineMarginBottom: "mb-8 sm:mb-12", 
+      taglineTracking: "tracking-[0.2em] font-[200] opacity-90",
+      buttonTextSize: "text-[15px] sm:text-[17px]",
       buttonTracking: "tracking-[0.1em]"
     },
   },
@@ -104,7 +104,7 @@ export const siteContent = {
     sectionTitle: "近期研究成果",
     sideText: "科学研究",
     exploreText: "探索更多研究",
-    linkText: "阅读全文", // 您提到的“Explore Publication”对应项
+    linkText: "阅读全文", 
     readMoreText: "阅读更多",
     readLessText: "收起内容",
     labels: {
@@ -132,8 +132,6 @@ export const siteContent = {
       showLess: "收起"
     },
     styles: {
-      // 修改点：成员卡片的操作按钮字体增大
-     
       btnTextSize: "text-base lg:text-[19px]",
       btnTracking: "tracking-[0.1em]"
     }
@@ -153,7 +151,6 @@ export const siteContent = {
     styles: {
       titleTracking: "tracking-[0.1em]",
       contentLineHeight: "leading-relaxed",
-      // 修改点：申请按钮字体增大一号，间距略微收紧以适应中文
       buttonTextSize: "text-[14px] lg:text-[16px]",
       buttonTracking: "tracking-[0.2em]"
     }
@@ -162,8 +159,8 @@ export const siteContent = {
   footer: {
     backToTop: "返回顶部",
     brand: {
-      line1: "上海天文台",
-      line2: "星系动力学组",
+      line1: "星系动力学组",
+      line2: "上海天文台",
       orgName: "中国科学院上海天文台",
       address: "上海市徐汇区南丹路80号, 200030",
       locationLabel: "地址",
