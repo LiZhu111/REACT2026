@@ -4,8 +4,8 @@ export const memberData = {
   faculty: [
     {
       id: "ling-zhu",
-      nameEn: "Ling Zhu",
-      nameCn: "朱 玲",
+      primaryName: "朱 玲",
+      secondaryName: "Ling Zhu",
       title: "研究组组长",
       email: "lzhu@shao.ac.cn",
       photo: "assets/members/LZ.jpeg",
@@ -16,8 +16,8 @@ export const memberData = {
     },
     {
       id: "meng-yang",
-      nameEn: "Meng Yang",
-      nameCn: "杨 梦",
+      primaryName: "杨 梦",
+      secondaryName: "Meng Yang",
       title: "助理研究员",
       email: "myang@shao.ac.cn",
       photo: "assets/members/YangMeng.jpg",
@@ -30,8 +30,8 @@ export const memberData = {
   postdocsAndStudents: [
     {
       id: "yunpeng-jin",
-      nameEn: "Yunpeng Jin",
-      nameCn: "金云鹏",
+      primaryName: "金云鹏",
+      secondaryName: "Yunpeng Jin",
       title: "博士后",
       email: "jinyunpeng@shao.ac.cn",
       photo: "assets/members/Jin.png",
@@ -40,8 +40,8 @@ export const memberData = {
     },
     {
       id: "chengqun-yang",
-      nameEn: "Chengqun Yang",
-      nameCn: "杨成群",
+      primaryName: "杨成群",
+      secondaryName: "Chengqun Yang",
       title: "博士后",
       email: "yangchengqun@shao.ac.cn",
       photo: "assets/members/YangCQ.png",
@@ -50,8 +50,8 @@ export const memberData = {
     },
     {
       id: "le-zhang",
-      nameEn: "Le Zhang",
-      nameCn: "张 乐",
+      primaryName: "张 乐",
+      secondaryName: "Le Zhang",
       title: "博士研究生",
       email: "zhangle@shao.ac.cn",
       photo: "assets/members/LeZhang.png",
@@ -60,8 +60,8 @@ export const memberData = {
     },
     {
       id: "yu-lei",
-      nameEn: "Yu Lei",
-      nameCn: "雷 雨",
+      primaryName: "雷 雨",
+      secondaryName: "Yu Lei",
       title: "博士研究生",
       email: "leiyu20@mails.ucas.ac.cn",
       photo: "assets/members/YuLei.jpeg",
@@ -70,8 +70,8 @@ export const memberData = {
     },
     {
       id: "hanjing-shi",
-      nameEn: "Hanjing Shi",
-      nameCn: "史晗靖",
+      primaryName: "史晗靖",
+      secondaryName: "Hanjing Shi",
       title: "博士研究生",
       email: "shihanjing21@mails.ucas.ac.cn",
       photo: "assets/members/Shi.jpeg",
@@ -80,8 +80,8 @@ export const memberData = {
     },
     {
       id: "runsheng-cai",
-      nameEn: "Runsheng Cai",
-      nameCn: "蔡润生",
+      primaryName: "蔡润生",
+      secondaryName: "Runsheng Cai",
       title: "硕士研究生",
       email: "cairunsheng@shao.ac.cn",
       photo: "assets/members/Cai.png",
@@ -94,8 +94,8 @@ export const memberData = {
   former: [
     {
       id: "yuchen-ding",
-      nameEn: "Yuchen Ding",
-      nameCn: "丁煜辰",
+      primaryName: "丁煜辰",
+      secondaryName: "Yuchen Ding",
       title: "博士 (2019-2024)",
       photo: "assets/members/YC.png",
       bio: "利用 MaNGA 巡天数据完成了关于星系动力学的博士研究。", // 直译自英文版 bio
@@ -104,8 +104,8 @@ export const memberData = {
     },
     {
       id: "behzad-t",
-      nameEn: "Behzad Tahmasebzade",
-      nameCn: "马 昭",
+      primaryName: "马 昭",
+      secondaryName: "Behzad Tahmasebzade",
       title: "博士 (2017-2022)",
       photo: "assets/members/behzadpic.jpeg",
       bio: "专注于应用于外部棒旋星系的动力学建模。", // 直译自英文版 bio
@@ -114,8 +114,8 @@ export const memberData = {
     },
     { 
       id: "sunshun-yuan",
-      nameEn: "Sunshun Yuan",
-      nameCn: "袁孙舜",
+      primaryName: "袁孙舜",
+      secondaryName: "Sunshun Yuan",
       title: "硕士 (2019-2022)",
       photo: "assets/members/Yuan.jpeg",
       bio: "对仙女座星系 (M31) 中的暗物质分布进行了系统研究。", // 直译自英文版 bio
