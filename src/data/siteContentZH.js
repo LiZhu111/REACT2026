@@ -128,8 +128,9 @@ export const siteContent = {
     labels: {
       research: "研究方向",
       placement: "毕业去向",
-      readMore: "阅读详情",
-      showLess: "收起"
+      contactLabel: "联系邮箱",
+      readMore: "了解更多",
+      showLess: "收起详情"
     },
     styles: {
       btnTextSize: "text-base lg:text-[19px]",
@@ -141,9 +142,8 @@ export const siteContent = {
     archiveLabel: "04 / 招贤纳士",
     sectionTitle: "加入我们",
     content: "我们长期招聘具有天体物理背景的博士后，并欢迎对星系动力学感兴趣的研究生报考。研究组提供国际化的科研环境、充足的算力资源以及广泛的国际合作机会。如果你对揭开星系的秘密充满热情，请随时联系我们。",
-    email: "lzhu@shao.ac.cn",
-    emailLabel: "发送简历至",
-    buttonText: "发送申请",
+    adminEmail: "bHpodUBzaGFvLmFjLmNu", // 加密后的邮箱地址
+   
     labels: {
       readMore: "阅读详情",
       showLess: "返回"

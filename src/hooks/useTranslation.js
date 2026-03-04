@@ -30,20 +30,26 @@ export function useTranslation() {
   const membersData = isEnglish ? membersEn : membersZh;
   const researchData = isEnglish ? researchEn : researchZh;
 
-  // 核心逻辑：注入成员模块所需的动态翻译字段
+  // 1. 定义统一的动态标签对象，包含您要求的 contactAction
+  const commonLabels = {
+    viewCV: isEnglish ? "View Personal CV" : "个人履历",
+    researchTitle: isEnglish ? "RESEARCH" : "研究方向",
+    placementTitle: isEnglish ? "PLACEMENT" : "去向",
+    readMore: isEnglish ? "Read More" : "查看更多",
+    showLess: isEnglish ? "Show Less" : "收起详情",
+    sendMessage: isEnglish ? "SEND MESSAGE" : "发送邮件",
+    contactAction: isEnglish ? "Job Inquiries" : "职位咨询" // 新增字段
+  };
+
+  // 2. 注入成员模块翻译
   if (site.member) {
-    // “探索更多”按钮文字
     site.member.exploreText = isEnglish ? "Explore More Members" : "探索更多成员";
-    
-    if (!site.member.labels) site.member.labels = {};
-    
-    // 注入卡片内的标签文字
-    const labels = site.member.labels;
-    labels.viewCV = isEnglish ? "View Personal CV" : "个人履历";
-    labels.researchTitle = isEnglish ? "RESEARCH" : "研究方向";
-    labels.placementTitle = isEnglish ? "PLACEMENT" : "去向";
-    labels.readMore = isEnglish ? "Read More" : "查看更多";
-    labels.showLess = isEnglish ? "Show Less" : "收起详情";
+    site.member.labels = { ...site.member.labels, ...commonLabels };
+  }
+
+  // 3. 注入招贤纳士模块翻译
+  if (site.opportunities) {
+    site.opportunities.labels = { ...site.opportunities.labels, ...commonLabels };
   }
 
   return {

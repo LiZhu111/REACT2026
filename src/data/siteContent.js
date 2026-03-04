@@ -149,6 +149,7 @@ research: {
     labels: {
       research: "Research:",
       placement: "Placement:",
+      contactLabel: "CONTACT EMAIL",
       readMore: "Read More",
       showLess: "Show Less"
     },
@@ -166,8 +167,7 @@ research: {
   archiveLabel: "Archive // 04",
   // 核心文案抽离
   content: "We are constantly seeking motivated postdocs and students who are interested in galaxy dynamics and evolution. Our group provides a collaborative environment with access to state-of-the-art computational resources and world-class observational data.",
-  email: "lzhu@shao.ac.cn",
-  buttonText: "Send Application",
+  adminEmail: "bHpodUBzaGFvLmFjLmNu", // 加密的邮箱地址
   labels: {
     readMore: "Read More",
     showLess: "Show Less"

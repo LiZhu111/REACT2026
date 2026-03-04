@@ -4,6 +4,8 @@ import { useTranslation } from '../hooks/useTranslation';
 export default function Footer() {
   const { footer } = useTranslation(); 
   const [isMobile, setIsMobile] = useState(false);
+  // --- 1. 新增：秘密入口计数状态 ---
+  const [clickCount, setClickCount] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -11,6 +13,22 @@ export default function Footer() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // --- 2. 新增：连击判定函数 ---
+  const handleSecretClick = () => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+
+    // 2秒后自动重置计数，防止跨度太长的点击被累计
+    const timer = setTimeout(() => setClickCount(0), 2000);
+
+    if (newCount === 3) {
+      // 成功连击3次，打开后端链接
+      window.open('https://galactic-dynamics-group.sanity.studio', '_blank');
+      setClickCount(0); // 触发后重置
+      clearTimeout(timer);
+    }
+  };
 
   const adaptiveTruncate = (text, limit, mobileLimit) => {
     if (!text) return "";
@@ -47,7 +65,12 @@ export default function Footer() {
           <div className="max-w-2xl space-y-8">
             <div className="space-y-4">
               <h2 className={`text-3xl ${footer.styles.orgFontWeight || 'font-[300]'} ${footer.styles.brandTracking} text-white leading-tight`}>
-                {footer.brand.line1} <br />
+                <span 
+                  onClick={handleSecretClick}
+                  
+                >
+                  {footer.brand.line1}
+                </span> <br />
                 <span className="text-cyan-500/70 text-lg italic tracking-[0.05em]">{footer.brand.line2}</span>
               </h2>
               <div className="h-px w-16 bg-cyan-500/30"></div>

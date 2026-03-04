@@ -1,16 +1,16 @@
+// src/data/memberData.js
 export const memberData = {
   faculty: [
-   {
+    {
       id: "ling-zhu",
       primaryName: "Ling Zhu",
       secondaryName: "朱 玲",
       title: "Group leader",
-      email: "lzhu@shao.ac.cn",
+      email: "bHpodUBzaGFvLmFjLmNu", // lzhu@shao.ac.cn
       photo: "assets/members/LZ.jpeg",
-      // 新增链接字段
       cvLink: "http://cosmos.shao.ac.cn/lingzhu/CV_LingZhu_2025.pdf", 
       viewCV: "View Personal CV",
-      bio: "Hi, I am Ling Zhu, I have led this research group in Shanghai Astronomical Observatory since 2018...",
+      bio: "Hi, I am Ling Zhu, I have led this research group in Shanghai Astronomical Observatory since 2018. Before joining SHAO, I was a postdoctoral researcher at the Max Planck Institute for Astronomy in Heidelberg, Germany.",
       direction: "Dynamical structure, CALIFA and MaNGA survey data research"
     },
     {
@@ -18,7 +18,7 @@ export const memberData = {
       primaryName: "Meng Yang",
       secondaryName: "杨 梦",
       title: "Assistant Researcher",
-      email: "myang@shao.ac.cn",
+      email: "bXlhbmdAc2hhby5hYy5jbg==", // myang@shao.ac.cn
       photo: "assets/members/YangMeng.jpg",
       bio: "My research interests lie in the field of galaxy formation and evolution, investigating galaxy structures using dynamical modelling techniques.",
       direction: "Galaxy formation and evolution, dynamical modelling"
@@ -30,7 +30,7 @@ export const memberData = {
       primaryName: "Yunpeng Jin",
       secondaryName: "金云鹏",
       title: "Postdoctoral Fellow",
-      email: "jinyunpeng@shao.ac.cn",
+      email: "am lueXVucGVuZ0BzaGFvLmFjLmNu", // jinyunpeng@shao.ac.cn
       photo: "assets/members/Jin.png",
       bio: "Focusing on the dynamical structure of galaxies, utilizing wide-field IFS survey data from CALIFA and MaNGA.",
       direction: "Dynamical Structure, CALIFA, MANGA"
@@ -40,7 +40,7 @@ export const memberData = {
       primaryName: "Chengqun Yang",
       secondaryName: "杨成群",
       title: "Postdoctoral Fellow",
-      email: "yangchengqun@shao.ac.cn",
+      email: "eWFuZ2NoZW5ncXVuQHNoYW8uYWMuY24=", // yangchengqun@shao.ac.cn
       photo: "assets/members/YangCQ.png",
       bio: "Investigating the Milky Way halo properties and stellar streams to reconstruct the accretion history of our Galaxy.",
       direction: "Milky Way halo, Streams"
@@ -50,7 +50,7 @@ export const memberData = {
       primaryName: "Le Zhang",
       secondaryName: "张 乐",
       title: "Ph.D. Student",
-      email: "zhangle@shao.ac.cn",
+      email: "emhhbmdsZUBzaGFvLmFjLmNu", // zhangle@shao.ac.cn
       photo: "assets/members/LeZhang.png",
       bio: "Exploring the fundamental physical processes driving galaxy structure formation and long-term evolution.",
       direction: "Galaxy Structure Formation and Evolution"
@@ -60,7 +60,7 @@ export const memberData = {
       primaryName: "Yu Lei",
       secondaryName: "雷 雨",
       title: "Ph.D. Student",
-      email: "leiyu20@mails.ucas.ac.cn",
+      email: "bGVpeXUyMEBtYWlscy51Y2FzLmFjLmNu", // leiyu20@mails.ucas.ac.cn
       photo: "assets/members/YuLei.jpeg",
       bio: "Analyzing the spatial distribution of dark matter in galaxies to constrain modern cosmological models.",
       direction: "Galaxy Dark Matter Distribution"
@@ -70,7 +70,7 @@ export const memberData = {
       primaryName: "Hanjing Shi",
       secondaryName: "史晗靖",
       title: "Ph.D. Student",
-      email: "shihanjing21@mails.ucas.ac.cn",
+      email: "c2hpaGFuamluZzIxQG1haWxzLnVjYXMuYWMuY24=", // shihanjing21@mails.ucas.ac.cn
       photo: "assets/members/Shi.jpeg",
       bio: "Studying the complex co-evolutionary links between host galaxies and their central supermassive black holes.",
       direction: "The co-evolution of galaxies and central BHs"
@@ -80,7 +80,7 @@ export const memberData = {
       primaryName: "Runsheng Cai",
       secondaryName: "蔡润生",
       title: "Master Student",
-      email: "cairunsheng@shao.ac.cn",
+      email: "Y2FpcnVuc2hlbmdAc2hhby5hYy5jbg==", // cairunsheng@shao.ac.cn
       photo: "assets/members/Cai.png",
       bio: "Developing new observational tracers to uncover the complex merger and assembly history of nearby galaxies.",
       direction: "Uncover galaxy merger history"
