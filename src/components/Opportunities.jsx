@@ -55,8 +55,23 @@ export default function Opportunities() {
                 <span className="text-white font-[200] tracking-[0.4em] text-xs uppercase border-b border-white/10 pb-2 group-hover:border-cyan-500/50">
                   {opp.emailLabel}
                 </span>
-                <span className="text-cyan-400 font-[400] tracking-[0.1em] text-lg sm:text-2xl">
-                  {opp.email}
+                <span
+                  className="text-cyan-400 font-[400] tracking-[0.1em] text-lg sm:text-2xl"
+                  title={opp.email}
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-7 w-7 sm:h-8 sm:w-8"
+                  >
+                    <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+                    <path d="m4.5 7 7.5 6 7.5-6" />
+                  </svg>
                 </span>
               </a>
             </motion.div>

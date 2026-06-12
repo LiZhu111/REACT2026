@@ -45,8 +45,25 @@ export default function MemberCard({
           <p className="text-cyan-400/60 text-[10px] tracking-[0.4em] uppercase mt-1 font-[300]">{title}</p>
           
           {email && (
-            <a href={`mailto:${email}`} className="text-xs text-slate-500 hover:text-cyan-400 transition-colors mt-2 block font-mono tracking-tighter">
-              {email}
+            <a
+              href={`mailto:${email}`}
+              aria-label={`Email ${primaryName}`}
+              title={email}
+              className="mt-3 inline-flex h-8 w-8 items-center justify-center text-slate-500 hover:text-cyan-400 transition-colors"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+                aria-hidden="true"
+              >
+                <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+                <path d="m4.5 7 7.5 6 7.5-6" />
+              </svg>
             </a>
           )}
         </div>
