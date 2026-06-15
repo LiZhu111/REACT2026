@@ -1,12 +1,11 @@
 backend:
-  name: github
-  repo: LiZhu111/REACT2026
+  name: git-gateway
   branch: main
 
 local_backend: true
 
-media_folder: "public/assets/uploads"
-public_folder: "assets/uploads"
+media_folder: "public/assets"
+public_folder: "assets"
 
 collections:
   - name: "site_content"
@@ -231,3 +230,4 @@ collections:
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Image", name: "image", widget: "image", required: false }
               - { label: "Link", name: "link", widget: "string", required: false }
+
