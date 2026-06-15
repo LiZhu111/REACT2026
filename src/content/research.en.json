@@ -10,19 +10,19 @@
     },
     {
       "id": 2,
-      "title": "The Milky Way's bar and its impact on the disk",
+      "title": "Deprojection of external barred galaxies from photometry",
       "authors": "Chen, Z., Zhu, L., et al. 2022",
-      "description": "We use N-body simulations and Gaia data to study the properties of the Milky Way's bar and its impact on the dynamics of the disk.",
+      "description": "Reconstructing the 3D intrinsic density distribution of a barred galaxy from the 2D image is challenging, but is a critical step for constructing galactic dynamical models. We present a method for deprojecting barred galaxies and validate the method by testing against mock images created from an N-body simulation with a peanut-shaped bar. Our model can generally recover the 3D density distribution of disk and inner barred bulge regions, and it supports the orbits that generate a boxy/peanut-shaped structure and an elongated bar similar to these in the true potential. ",
       "image": "assets/research/bar.jpeg",
-      "link": "https://ui.adsabs.harvard.edu/abs/2022MNRAS.515.2110C/abstract"
+      "link": "https://ui.adsabs.harvard.edu/abs/2021MNRAS.508.6209T%2F/abstract"
     },
     {
       "id": 3,
-      "title": "The orbital structure of the Galactic bulge",
+      "title": "Orbit-based Hubble sequence",
       "authors": "Ning, Q., Zhu, L., et al. 2021",
-      "description": "We use a Schwarzschild method to construct self-consistent models of the Galactic bulge and study its orbital structure.",
+      "description": "Using the data from the CALIFA IFU survey, we obtained the stellar orbit distribution of a large sample representative of the general properties of galaxies in the local universe. We have been able to provide a orbit-based 'Hubble sequence' which is a comprehensive, quantitatively description of galactic structures ( Zhu+2018, Nature Astronomy, 2, 233 ). We call it 'library of galaxy histories'.",
       "image": "assets/research/orbit2.jpeg",
-      "link": "https://ui.adsabs.harvard.edu/abs/2021ApJ...919...63N/abstract"
+      "link": "https://www.mpia.de/news/science/2018-02-stellar-orbits"
     }
   ]
 }
