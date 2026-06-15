@@ -116,7 +116,7 @@
       "locationLabel": "LOC.",
       "mapUrl": "https://api.map.baidu.com/direction?destination=上海天文台&mode=driving&region=上海&output=html&src=webapp.baidu.openAPIdemo"
     },
-    "copyright": "Galactic Dynamics Group. All rights reserved.",
+    "copyright": "Galaxy Structure and Dynamics Group. All rights reserved.",
     "tagline": "Engineered with Precision",
     "location": "Shanghai, CN",
     "sections": [
