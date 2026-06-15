@@ -121,38 +121,44 @@
     "location": "Shanghai, CN",
     "sections": [
       {
-        "title": "Navigation",
+        "title": "Related Links",
         "links": [
           {
-            "name": "About Group",
-            "url": "#about"
+            "name": "SHAO Astrophysics",
+            "url": "https://shao.cas.cn/astro/"
           },
           {
-            "name": "Research Archive",
-            "url": "#research"
+            "name": "Shanghai Astronomical Observatory",
+            "url": "https://www.shao.ac.cn/"
           },
           {
-            "name": "Team Members",
-            "url": "#member"
-          },
-          {
-            "name": "Opportunities",
-            "url": "#opportunities"
+            "name": "University of Chinese Academy of Science",
+            "url": "https://www.ucas.ac.cn/"
           }
         ]
       },
       {
-        "title": "Resources",
+        "title": "Helpful Resources",
         "links": [
           {
-            "name": "SHAO Website",
-            "url": "https://www.shao.ac.cn",
+            "name": "ADS",
+            "url": "https://ui.adsabs.harvard.edu/",
             "external": true
           },
           {
-            "name": "CAS Global",
-            "url": "https://english.cas.cn",
+            "name": "Astrop-ph",
+            "url": "https://lingzhu-astronomy.netlify.app/",
             "external": true
+          },
+          {
+            "external": false,
+            "name": "Astro Pictures",
+            "url": "https://apod.nasa.gov/apod/"
+          },
+          {
+            "external": false,
+            "name": "VoxCharta SHAO",
+            "url": "https://lingzhu-astronomy.netlify.app/"
           }
         ]
       }
