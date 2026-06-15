@@ -1,10 +1,25 @@
 import { createContext, createElement, useContext, useMemo, useState } from 'react';
-import { siteContent as siteEn } from '../data/siteContent';
-import { memberData as membersEn } from '../data/memberData';
-import { researchData as researchEn } from '../data/researchData';
-import { siteContent as siteZh } from '../data/siteContentZH';
-import { memberData as membersZh } from '../data/memberDataZH';
-import { researchData as researchZh } from '../data/researchDataZH';
+import siteEn from '../content/site.en.json';
+import membersEn from '../content/members.en.json';
+import researchEn from '../content/research.en.json';
+import siteZh from '../content/site.zh.json';
+import membersZh from '../content/members.zh.json';
+import researchZh from '../content/research.zh.json';
+import editableEn from '../content/editable.en.json';
+import editableZh from '../content/editable.zh.json';
+
+if (import.meta.hot) {
+  import.meta.hot.accept([
+    '../content/editable.en.json',
+    '../content/editable.zh.json',
+    '../content/members.en.json',
+    '../content/members.zh.json',
+    '../content/research.en.json',
+    '../content/research.zh.json',
+  ], () => {
+    window.location.reload();
+  });
+}
 
 const TranslationContext = createContext(null);
 
@@ -38,11 +53,28 @@ function getInitialLang() {
   return localStorage.getItem('app_lang') || 'zh';
 }
 
+function mergeContent(base, edits) {
+  if (edits === undefined) return base;
+  if (edits === null || typeof edits !== 'object') return edits;
+  if (Array.isArray(base) || Array.isArray(edits)) return edits;
+
+  return Object.entries(edits).reduce(
+    (merged, [key, value]) => ({
+      ...merged,
+      [key]: mergeContent(merged[key], value),
+    }),
+    { ...base }
+  );
+}
+
 function buildTranslationValue(lang, toggleLanguage) {
   const isEnglish = lang === 'en';
-  const site = isEnglish ? siteEn : siteZh;
+  const siteBase = isEnglish ? siteEn : siteZh;
+  const editable = isEnglish ? editableEn : editableZh;
+  const site = mergeContent(siteBase, editable);
   const membersData = isEnglish ? membersEn : membersZh;
-  const researchData = isEnglish ? researchEn : researchZh;
+  const researchContent = isEnglish ? researchEn : researchZh;
+  const researchData = researchContent.items || researchContent;
   const text = isEnglish ? memberLabelText.en : memberLabelText.zh;
 
   return {

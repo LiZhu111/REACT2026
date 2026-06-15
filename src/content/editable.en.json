@@ -1,0 +1,123 @@
+{
+  "hero": {
+    "titleStructure": [
+      {
+        "text": "GALAXY",
+        "break": true
+      },
+      {
+        "text": "STRUCTURE",
+        "hasConnector": true,
+        "break": true
+      },
+      {
+        "text": "DYNAMICS"
+      }
+    ],
+    "subtitleStructure": [
+      {
+        "text": "Deciphering the mechanisms of galaxy formation and evolution through integrated dynamical modeling and multi-wavelength observations."
+      }
+    ],
+    "tagline": "Shanghai Astronomical Observatory · CAS",
+    "buttons": [
+      {
+        "text": "Explore Research",
+        "targetId": "research",
+        "primary": true
+      },
+      {
+        "text": "Our Team",
+        "targetId": "member",
+        "primary": false
+      }
+    ]
+  },
+  "about": {
+    "archiveLabel": "RESEARCH MISSION // 01",
+    "sectionTitle": "About Us",
+    "titleStructure": [
+      {
+        "text": "Advancing our understanding of ",
+        "className": "font-[100] text-white/70",
+        "break": true
+      },
+      {
+        "text": "Galactic Evolution",
+        "className": "font-[300] text-cyan-400",
+        "break": true
+      },
+      {
+        "text": "through Dynamics & Observations led by ",
+        "className": "font-[100] text-white/70",
+        "break": true
+      },
+      {
+        "text": "Ling Zhu",
+        "className": "font-[300] text-cyan-400",
+        "break": false
+      }
+    ],
+    "description": "Our group at Shanghai Astronomical Observatory (SHAO) specializes in the physical processes that shape galaxies across cosmic time. By bridging the gap between massive cosmological simulations and high-precision sky surveys, we utilize advanced dynamical modeling to decode the complex fossil records of galaxies and probe the underlying nature of dark matter.",
+    "labels": {
+      "readMore": "Explore Full Mission",
+      "showLess": "Condense View",
+      "separator": "//",
+      "linkText": "Explore Publication"
+    },
+    "coreFields": [
+      "Chemo-dynamics Modeling",
+      "Galaxy Assembly History",
+      "Dark Matter Distribution",
+      "SMBH Mass Estimation",
+      "Multi-component Kinematics"
+    ]
+  },
+  "research": {
+    "sectionTitle": "Recent Research",
+    "exploreText": "Explore More Research",
+    "linkText": "Explore Publication",
+    "readMoreText": "Read More",
+    "readLessText": "Show Less"
+  },
+  "member": {
+    "sectionTitle": "Group Members",
+    "exploreText": "Explore More Members",
+    "categoryTitles": {
+      "faculty": "Faculty",
+      "students": "Postdocs & Students",
+      "former": "Former Members"
+    },
+    "labels": {
+      "research": "Research:",
+      "placement": "Placement:",
+      "readMore": "Read More",
+      "showLess": "Show Less"
+    }
+  },
+  "opportunities": {
+    "sectionTitle": "Opportunities",
+    "archiveLabel": "Archive // 04",
+    "content": "We are constantly seeking motivated postdocs and students who are interested in galaxy dynamics and evolution. Our group provides a collaborative environment with access to state-of-the-art computational resources and world-class observational data.",
+    "email": "lzhu@shao.ac.cn",
+    "emailLabel": "Send CV →",
+    "buttonText": "Send Application",
+    "labels": {
+      "readMore": "Read More",
+      "showLess": "Show Less"
+    }
+  },
+  "footer": {
+    "brand": {
+      "line1": "Galaxy Dynamics Group",
+      "line2": "SHAO",
+      "orgName": "Shanghai Astronomical Observatory, Chinese Academy of Sciences",
+      "address": "80 Nandan Road, Xuhui District, Shanghai 200030, China",
+      "locationLabel": "LOC.",
+      "mapUrl": "https://api.map.baidu.com/direction?destination=上海天文台&mode=driving&region=上海&output=html&src=webapp.baidu.openAPIdemo"
+    },
+    "copyright": "Galactic Dynamics Group. All rights reserved.",
+    "tagline": "Engineered with Precision",
+    "location": "Shanghai, CN"
+  }
+}
