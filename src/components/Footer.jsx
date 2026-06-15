@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
 
           {/* Internal layout marker. */}
-          <div className="flex flex-wrap gap-x-24 gap-y-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-10">
             {footer.sections.map((section, idx) => (
               <div key={idx} className="space-y-6 w-40 sm:w-44">
                 <h4 className={`text-xs ${footer.styles.navLinkTracking} text-cyan-500/60 uppercase font-[600] whitespace-normal break-words leading-relaxed`}>
