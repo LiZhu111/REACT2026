@@ -79,8 +79,8 @@ export default function Footer() {
           {/* Internal layout marker. */}
           <div className="flex flex-wrap gap-x-24 gap-y-10">
             {footer.sections.map((section, idx) => (
-              <div key={idx} className="space-y-6">
-                <h4 className={`text-xs ${footer.styles.navLinkTracking} text-cyan-500/60 uppercase font-[600]`}>
+              <div key={idx} className="space-y-6 w-40 sm:w-44">
+                <h4 className={`text-xs ${footer.styles.navLinkTracking} text-cyan-500/60 uppercase font-[600] whitespace-normal break-words leading-relaxed`}>
                   {section.title}
                 </h4>
                 <ul className={`space-y-4 text-sm ${footer.styles.navLinkTracking} ${footer.styles.orgFontWeight || 'font-[400]'} text-gray-400`}>
@@ -90,7 +90,7 @@ export default function Footer() {
                         href={link.url} 
                         target={link.external ? "_blank" : "_self"}
                         rel={link.external ? "noreferrer" : ""}
-                        className="hover:text-cyan-400 transition-colors block"
+                        className="hover:text-cyan-400 transition-colors block whitespace-normal break-words leading-relaxed"
                       >
                         {adaptiveTruncate(link.name, footer.constraints.linkNameMax)}
                       </a>
