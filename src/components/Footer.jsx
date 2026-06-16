@@ -79,7 +79,7 @@ export default function Footer() {
           {/* Internal layout marker. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-24 gap-y-10">
             {footer.sections.map((section, idx) => (
-              <div key={idx} className="space-y-6 w-40 sm:w-44">
+              <div key={idx} className="space-y-6 w-full max-w-xs sm:w-44 sm:max-w-none">
                 <h4 className={`text-xs ${footer.styles.navLinkTracking} text-cyan-500/60 uppercase font-[600] whitespace-normal break-words leading-relaxed`}>
                   {section.title}
                 </h4>
@@ -92,7 +92,7 @@ export default function Footer() {
                         rel={link.external ? "noreferrer" : ""}
                         className="hover:text-cyan-400 transition-colors block whitespace-normal break-words leading-relaxed"
                       >
-                        {adaptiveTruncate(link.name, footer.constraints.linkNameMax)}
+                        {link.name}
                       </a>
                     </li>
                   ))}
@@ -108,10 +108,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {footer.copyright}
           </p>
           
-          <div className={`flex items-center gap-4 ${footer.styles.copyrightSize} text-gray-400 font-[300]`}>
-            <span className={footer.styles.taglineTracking}>{footer.tagline}</span>
-            <div className="w-1 h-1 rounded-full bg-gray-600"></div>
-            <span className={footer.styles.navLinkTracking}>{footer.location}</span>
+          <div className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 ${footer.styles.copyrightSize} text-gray-400 font-[300]`}>
+            <span className={`${footer.styles.taglineTracking} block`}>{footer.tagline}</span>
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-600"></div>
+            <span className={`${footer.styles.navLinkTracking} block`}>{footer.location}</span>
           </div>
         </div>
       </div>
